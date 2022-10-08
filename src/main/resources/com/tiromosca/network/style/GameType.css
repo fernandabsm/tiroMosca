@@ -1,0 +1,34 @@
+.gameType_container {
+    -fx-background-color: #BDBDBD;
+}
+
+.gameType_content_container {
+    -fx-background-color: #6A9F79;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
+.gameType_content_container Text {
+    -fx-font-family: "Fredoka";
+    -fx-font-size: 40px;
+    -fx-fill: #FFFFFF;
+}
+
+.gameType_content_buttons_container {
+    -fx-font-family: "Fredoka";
+    -fx-spacing: 24px;
+    -fx-alignment: center;
+}
+
+.gameType_content_buttons_container Button {
+    -fx-background-color: #B6D3B1;
+    -fx-text-fill: #1D422C;
+    -fx-pref-width: 269px;
+    -fx-pref-height: 53px;
+    -fx-font-size: 32px;
+    -fx-font-family: "Fredoka";
+}
+
+.gameType_content_buttons_container Button:hover {
+    -fx-cursor: hand;
+}

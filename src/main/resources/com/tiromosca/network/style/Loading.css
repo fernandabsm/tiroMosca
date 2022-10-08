@@ -1,0 +1,21 @@
+.loading_container {
+    -fx-background-color: #BDBDBD;
+}
+
+.loading_content_container {
+    -fx-background-color: #6A9F79;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
+.loading_content_container Text {
+    -fx-font-family: "Fredoka";
+    -fx-font-size: 40px;
+    -fx-fill: #FFFFFF;
+}
+
+.loading_content_gif_container Text {
+    -fx-font-family: "Fredoka";
+    -fx-font-size: 24px;
+    -fx-fill: #1C3D19;
+}
