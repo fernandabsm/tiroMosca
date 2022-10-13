@@ -31,6 +31,24 @@ public class ViewFactory {
         createStage(loader);
     }
 
+    public void showActualMatchWindow() throws FileNotFoundException {
+        loadFont();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ActualMatch.fxml"));
+        createStage(loader);
+    }
+
+    public void showLoadingBetweenRoundsWindow() throws FileNotFoundException {
+        loadFont();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoadingBetweenRounds.fxml"));
+        createStage(loader);
+    }
+
+    public void showActualResultWindow() throws FileNotFoundException {
+        loadFont();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ActualResult.fxml"));
+        createStage(loader);
+    }
+
     private void loadFont() throws FileNotFoundException {
         File file = new File("src/main/resources/com/tiromosca/network/style/font/Fredoka-Regular.ttf");
         Font.loadFont(new FileInputStream(file), 40);

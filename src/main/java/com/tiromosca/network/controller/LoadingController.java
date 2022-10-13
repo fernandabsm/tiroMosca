@@ -1,6 +1,6 @@
 package com.tiromosca.network.controller;
 
-import com.tiromosca.network.connection.client.NetworkListener;
+import com.tiromosca.network.connection.client.ConnectionListener;
 import com.tiromosca.network.connection.client.PlayerClient;
 import com.tiromosca.network.game.util.PlayerHolder;
 import javafx.application.Platform;
@@ -27,13 +27,14 @@ public class LoadingController implements Initializable {
         loadingThread.start();
     }
 
-    private class LoadingControllerThread extends Thread implements NetworkListener {
+    private class LoadingControllerThread extends Thread implements ConnectionListener {
 
         private final Boolean haveTwoPlayers = false;
 
         @Override
         public void run() {
-            PlayerClient playerClient = new PlayerClient(this);
+            PlayerClient playerClient = new PlayerClient();
+            playerClient.setConnectionListener(this);
             playerClient.connectToServer();
 
             PlayerHolder holder = PlayerHolder.getInstance();
@@ -64,7 +65,7 @@ public class LoadingController implements Initializable {
         }
 
         @Override
-        public void haveTwoPlayers(boolean haveTwoPlayers) {
+        public void itsTimeToPlay() {
             synchronized (this.haveTwoPlayers) {
                 this.haveTwoPlayers.notifyAll();
             }

@@ -9,19 +9,28 @@ import java.net.Socket;
 @Data
 public class PlayerClient {
 
-    public PlayerClient(NetworkListener networkListener) {
-        this.listener = networkListener;
-    }
-
     private PlayerClientConnection playerClientConnection;
     private int opponentID;
     private int playerID;
 
+    private String playerAim;
+    private String opponentAttempt;
+    private String lastAttempt;
+    private String shots;
+    private String flies;
+
+    private Boolean firstPlayerToPlay;
     private Boolean itsMyTimeToPlay;
+    private Boolean isActualChampion;
 
-    private NetworkListener listener;
+    private ConnectionListener connectionListener;
+    private MatchListener matchListener;
 
-    public void sendAim(String aim) { playerClientConnection.sendAim(aim); }
+    public void sendAim(String aim) {
+        System.out.println("Cheguei e vou enviar meu numero");
+        playerClientConnection.sendAim(aim);
+    }
+    public void sendAttempt(String sendAttempt) { playerClientConnection.sendAttempt(sendAttempt); }
 
     public void connectToServer() {
         playerClientConnection = new PlayerClientConnection();
@@ -29,8 +38,13 @@ public class PlayerClient {
     }
 
     public void verifyOpponentConnection() {
-        System.out.println("Entrei nessa função");
+        System.out.println("Entrei  na função de verificar conexao do oponente");
         playerClientConnection.verifyOpponentConnection();
+    }
+
+    public void getMatchResult() {
+        System.out.println("Entrei na função de obter resultado");
+        playerClientConnection.readMatchResult();
     }
 
     @Data
@@ -51,6 +65,8 @@ public class PlayerClient {
                 this.playerID = bufferedReader.read();
                 System.out.println("Player " + playerID + " conectado");
                 this.opponentID = (playerID == 1) ? 2 : 1;
+                firstPlayerToPlay = playerID == 1;
+                itsMyTimeToPlay = playerID == 1;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -66,7 +82,36 @@ public class PlayerClient {
                     try {
                         msgFromOpponent = bufferedReader.readLine();
                         System.out.println(msgFromOpponent);
-                        listener.haveTwoPlayers(true);
+                        connectionListener.itsTimeToPlay();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+        }
+
+        public void readMatchResult() {
+            System.out.println("Entrei na função para leitura do resultado");
+            new Thread(() -> {
+                String flies = StringUtils.EMPTY;
+                String shots = StringUtils.EMPTY;
+                int winnerValue = 0;
+                int looserValue = 0;
+
+                System.out.println("Vou entrar no while... aguardando...");
+                while (flies.isEmpty() || shots.isEmpty()) {
+                    try {
+                        System.out.println("Its my time to play?" + itsMyTimeToPlay);
+                        if (!itsMyTimeToPlay) {
+                            opponentAttempt = bufferedReader.readLine();
+                        }
+                        flies = bufferedReader.readLine();
+                        System.out.println(flies);
+                        shots = bufferedReader.readLine();
+                        System.out.println(shots);
+                        winnerValue = bufferedReader.read();
+                        looserValue = bufferedReader.read();
+                        matchListener.haveAResult(flies, shots, winnerValue, looserValue);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -77,6 +122,7 @@ public class PlayerClient {
         // metodo a ser chamado ao clicar no botao de confirmar escolha de valor
         public void sendAim(String aim) {
             try {
+                playerAim = aim;
                 bufferedWriter.write(aim);
                 bufferedWriter.flush();
             } catch (IOException e) {
@@ -87,6 +133,7 @@ public class PlayerClient {
         // metodo a ser chamado ao realizar uma tentativa
         public void sendAttempt(String attempt) {
             try {
+                lastAttempt = attempt;
                 bufferedWriter.write(attempt);
                 bufferedWriter.flush();
             } catch (IOException e) {
