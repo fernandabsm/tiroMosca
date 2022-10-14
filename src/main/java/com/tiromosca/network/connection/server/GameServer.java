@@ -115,7 +115,7 @@ public class GameServer {
 
                     if (round % 2 != 0) {
                         System.out.println("ENTREI NO ROUND 1");
-                        playerOneAttempt = bufferedReader.readLine();
+                        playerOneAttempt = player1.bufferedReader.readLine();
                         List<Integer> shotsAndFies = GameMatchManager.getResultOfAMatch(playerOneAttempt, playerTwoAim);
                         fliesPlayer1 = shotsAndFies.get(1);
                         List<String> result = GameMatchManager.formatResultOfAMatch(shotsAndFies.get(0), fliesPlayer1);
@@ -169,7 +169,7 @@ public class GameServer {
                         }
                     } else {
                         System.out.println("ENTREI ROUND 2");
-                        playerTwoAttempt = bufferedReader.readLine();
+                        playerTwoAttempt = player2.bufferedReader.readLine();
                         System.out.println("TESTE 1!!!!!!!!!!");
                         List<Integer> shotsAndFies = GameMatchManager.getResultOfAMatch(playerTwoAttempt, playerOneAim);
                         fliesPlayer2 = shotsAndFies.get(1);
@@ -180,7 +180,7 @@ public class GameServer {
 
                         player2.bufferedWriter.flush();
 
-                        //Envia o resultado ao player 1
+                        //Envia o resultado ao player 2
                         player2.bufferedWriter.write(result.get(1)+'\n');
                         player2.bufferedWriter.flush();
                         player2.bufferedWriter.write(result.get(0)+'\n');

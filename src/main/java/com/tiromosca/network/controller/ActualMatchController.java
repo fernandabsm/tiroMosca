@@ -86,9 +86,7 @@ public class ActualMatchController implements Initializable {
         Platform.runLater(() -> {
             try {
                 Model.getInstance().getViewFactory().showActualResultWindow();
-                var stage = (Stage) dashboard.getScene().getWindow();
-                stage.close();
-                //dashboard.getScene().getWindow().hide();
+                dashboard.getScene().getWindow().hide();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }

@@ -116,7 +116,7 @@ public class PlayerClient {
                         e.printStackTrace();
                     }
                 }
-            }).start();
+           }).start();
         }
 
         // metodo a ser chamado ao clicar no botao de confirmar escolha de valor
