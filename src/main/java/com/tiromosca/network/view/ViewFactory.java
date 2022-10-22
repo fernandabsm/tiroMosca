@@ -49,6 +49,13 @@ public class ViewFactory {
         createStage(loader);
     }
 
+    public void showResultWindow() throws FileNotFoundException {
+        loadFont();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Result.fxml"));
+        createStage(loader);
+    }
+
+
     private void loadFont() throws FileNotFoundException {
         File file = new File("src/main/resources/com/tiromosca/network/style/font/Fredoka-Regular.ttf");
         Font.loadFont(new FileInputStream(file), 40);

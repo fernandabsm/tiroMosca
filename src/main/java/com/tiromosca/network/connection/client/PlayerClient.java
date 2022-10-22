@@ -12,9 +12,12 @@ public class PlayerClient {
     private PlayerClientConnection playerClientConnection;
     private int opponentID;
     private int playerID;
+    private int numOfVictories;
+    private int numOfOpponentVictories;
 
     private String playerAim;
     private String opponentAttempt;
+    private String opponentAim;
     private String lastAttempt;
     private String shots;
     private String flies;
@@ -27,7 +30,6 @@ public class PlayerClient {
     private MatchListener matchListener;
 
     public void sendAim(String aim) {
-        System.out.println("Cheguei e vou enviar meu numero");
         playerClientConnection.sendAim(aim);
     }
     public void sendAttempt(String sendAttempt) { playerClientConnection.sendAttempt(sendAttempt); }
@@ -38,13 +40,15 @@ public class PlayerClient {
     }
 
     public void verifyOpponentConnection() {
-        System.out.println("Entrei  na função de verificar conexao do oponente");
         playerClientConnection.verifyOpponentConnection();
     }
 
     public void getMatchResult() {
-        System.out.println("Entrei na função de obter resultado");
         playerClientConnection.readMatchResult();
+    }
+
+    public String getOpponentAim() {
+        return playerClientConnection.getOpponentAim();
     }
 
     @Data
@@ -57,6 +61,8 @@ public class PlayerClient {
 
         public PlayerClientConnection() {
             try {
+                numOfVictories = 0;
+                numOfOpponentVictories = 0;
                 this.socket = new Socket("localhost", 20525);
                 var outputStream = new OutputStreamWriter(socket.getOutputStream());
                 var inputStream = new InputStreamReader(socket.getInputStream());
@@ -91,17 +97,14 @@ public class PlayerClient {
         }
 
         public void readMatchResult() {
-            System.out.println("Entrei na função para leitura do resultado");
             new Thread(() -> {
                 String flies = StringUtils.EMPTY;
                 String shots = StringUtils.EMPTY;
                 int winnerValue = 0;
                 int looserValue = 0;
 
-                System.out.println("Vou entrar no while... aguardando...");
                 while (flies.isEmpty() || shots.isEmpty()) {
                     try {
-                        System.out.println("Its my time to play?" + itsMyTimeToPlay);
                         if (!itsMyTimeToPlay) {
                             opponentAttempt = bufferedReader.readLine();
                         }
@@ -139,6 +142,16 @@ public class PlayerClient {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+
+        public String getOpponentAim() {
+            var opponentValue = StringUtils.EMPTY;
+            try {
+                opponentValue = bufferedReader.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return opponentValue;
         }
     }
 }

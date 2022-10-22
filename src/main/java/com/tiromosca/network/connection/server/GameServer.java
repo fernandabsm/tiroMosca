@@ -3,7 +3,6 @@ package com.tiromosca.network.connection.server;
 import com.tiromosca.network.game.util.GameMatchManager;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.commons.lang3.BooleanUtils;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -114,13 +113,10 @@ public class GameServer {
                 while (victoriesPlayer1 == 0 && victoriesPlayer2 == 0) {
 
                     if (round % 2 != 0) {
-                        System.out.println("ENTREI NO ROUND 1");
                         playerOneAttempt = player1.bufferedReader.readLine();
                         List<Integer> shotsAndFies = GameMatchManager.getResultOfAMatch(playerOneAttempt, playerTwoAim);
                         fliesPlayer1 = shotsAndFies.get(1);
                         List<String> result = GameMatchManager.formatResultOfAMatch(shotsAndFies.get(0), fliesPlayer1);
-
-                        System.out.println("Enviando as respostas para o player 1");
 
                         //Envia o resultado ao player 1
                         player1.bufferedWriter.write(result.get(1)+'\n');
@@ -135,6 +131,9 @@ public class GameServer {
                             //  looser
                             player1.bufferedWriter.write(0);
                             player1.bufferedWriter.flush();
+
+                            player1.bufferedWriter.write(playerTwoAim+'\n');
+                            player1.bufferedWriter.flush();
                         } else {
                             // winner
                             player1.bufferedWriter.write(0);
@@ -146,7 +145,7 @@ public class GameServer {
 
                         System.out.println("Enviando as respostas para o player 2");
                         //Envia o resultado ao player 2
-                        player2.bufferedWriter.write(playerOneAttempt +'\n');
+                        player2.bufferedWriter.write(playerOneAttempt+'\n');
                         player2.bufferedWriter.flush();
                         player2.bufferedWriter.write(result.get(1)+'\n');
                         player2.bufferedWriter.flush();
@@ -158,6 +157,9 @@ public class GameServer {
                             player2.bufferedWriter.flush();
                             // looser
                             player2.bufferedWriter.write(1);
+                            player2.bufferedWriter.flush();
+
+                            player2.bufferedWriter.write(playerOneAim+'\n');
                             player2.bufferedWriter.flush();
                         } else {
                             // winner
@@ -168,24 +170,17 @@ public class GameServer {
                             player2.bufferedWriter.flush();
                         }
                     } else {
-                        System.out.println("ENTREI ROUND 2");
                         playerTwoAttempt = player2.bufferedReader.readLine();
-                        System.out.println("TESTE 1!!!!!!!!!!");
                         List<Integer> shotsAndFies = GameMatchManager.getResultOfAMatch(playerTwoAttempt, playerOneAim);
                         fliesPlayer2 = shotsAndFies.get(1);
                         List<String> result = GameMatchManager.formatResultOfAMatch(shotsAndFies.get(0), fliesPlayer2);
-
-                        System.out.println("TESTE 2!!!!!!!!!!");
-                        System.out.println("Enviando as respostas para o player 2");
-
-                        player2.bufferedWriter.flush();
 
                         //Envia o resultado ao player 2
                         player2.bufferedWriter.write(result.get(1)+'\n');
                         player2.bufferedWriter.flush();
                         player2.bufferedWriter.write(result.get(0)+'\n');
                         player2.bufferedWriter.flush();
-                        if (fliesPlayer1 == 3) {
+                        if (fliesPlayer2 == 3) {
                             victoriesPlayer2++;
                             // winner
                             player2.bufferedWriter.write(1);
@@ -193,29 +188,35 @@ public class GameServer {
                             //  looser
                             player2.bufferedWriter.write(0);
                             player2.bufferedWriter.flush();
+
+                            player2.bufferedWriter.write(playerTwoAim+'\n');
+                            player2.bufferedWriter.flush();
                         } else {
                             // winner
                             player2.bufferedWriter.write(0);
-                            player1.bufferedWriter.flush();
+                            player2.bufferedWriter.flush();
                             //  looser
                             player2.bufferedWriter.write(0);
                             player2.bufferedWriter.flush();
                         }
 
                         System.out.println("Enviando as respostas para o player 1");
-                        //Envia o resultado ao player 2
-                        player1.bufferedWriter.write(playerTwoAttempt +'\n');
+                        //Envia o resultado ao player 1
+                        player1.bufferedWriter.write(playerTwoAttempt+'\n');
                         player1.bufferedWriter.flush();
                         player1.bufferedWriter.write(result.get(1)+'\n');
                         player1.bufferedWriter.flush();
                         player1.bufferedWriter.write(result.get(0)+'\n');
                         player1.bufferedWriter.flush();
-                        if (fliesPlayer1 == 3) {
+                        if (fliesPlayer2 == 3) {
                             // winner
                             player1.bufferedWriter.write(0);
                             player1.bufferedWriter.flush();
                             // looser
                             player1.bufferedWriter.write(1);
+                            player1.bufferedWriter.flush();
+
+                            player1.bufferedWriter.write(playerTwoAim+'\n');
                             player1.bufferedWriter.flush();
                         } else {
                             // winner

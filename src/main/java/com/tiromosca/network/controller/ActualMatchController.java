@@ -67,7 +67,12 @@ public class ActualMatchController implements Initializable {
             if (winner == 0 && looser == 0) {
                 showActualResultWidow();
             } else {
-
+                // como esse eh o jogador que fez a jogada atual, ele soh pode ser o vencedor
+                player.setIsActualChampion(true);
+                var numOfVictories = player.getNumOfVictories() + 1;
+                player.setNumOfVictories(numOfVictories);
+                System.out.println(" OI cheguei aqui");
+                showFinalResultWidow();
             }
         }
     }
@@ -86,6 +91,17 @@ public class ActualMatchController implements Initializable {
         Platform.runLater(() -> {
             try {
                 Model.getInstance().getViewFactory().showActualResultWindow();
+                dashboard.getScene().getWindow().hide();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private void showFinalResultWidow() {
+        Platform.runLater(() -> {
+            try {
+                Model.getInstance().getViewFactory().showResultWindow();
                 dashboard.getScene().getWindow().hide();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

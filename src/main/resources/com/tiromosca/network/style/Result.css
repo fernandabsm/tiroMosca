@@ -1,0 +1,81 @@
+.result_container {
+    -fx-background-color: #BDBDBD;
+}
+
+.result_content_container {
+    -fx-background-color: #6A9F79;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
+.result_content_container Text {
+    -fx-font-family: "Fredoka";
+    -fx-font-size: 40px;
+    -fx-fill: #FFFFFF;
+}
+
+.result_content_title_container {
+    -fx-alignment: center;
+}
+
+.result_content_title_container Text {
+    -fx-text-alignment: center;
+    -fx-font-family: "Fredoka";
+    -fx-font-size: 28px;
+    -fx-fill: #1C3D19;
+}
+
+.result_content_title_textfield_container {
+    -fx-alignment: center;
+}
+
+.result_content_title_textfield_container Text {
+    -fx-font-family: "Fredoka";
+    -fx-font-size: 24px;
+    -fx-fill: #1C3D19;
+}
+
+.result_content_result_container {
+    -fx-alignment: center;
+}
+
+.result_content_result_background_container {
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-background-color: #BDBDBD;
+    -fx-pref-width: 192px;
+    -fx-pref-height: 58px;
+    -fx-alignment: center;
+}
+
+.result_content_result_background_container Text {
+    -fx-font-family: "Fredoka";
+    -fx-font-size: 32px;
+    -fx-fill: #FFFFFF;
+}
+
+.result_warning_container {
+    -fx-alignment: center;
+}
+
+.result_warning_container Text {
+    -fx-font-family: "Fredoka";
+    -fx-font-size: 14px;
+    -fx-fill: #CA0000;
+}
+
+.result_content_button_container {
+    -fx-alignment: center;
+}
+
+.result_content_button_container Button {
+    -fx-background-color: #B6D3B1;
+    -fx-pref-width: 191px;
+    -fx-pref-height: 53px;
+    -fx-font-family: "Fredoka";
+    -fx-font-size: 20px;
+}
+
+.result_content_button_container Button:hover {
+    -fx-cursor: hand;
+}

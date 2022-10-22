@@ -56,7 +56,15 @@ public class LoadingBetweenRounds implements Initializable {
             player.setFlies(flies);
             player.setShots(shots);
 
-            showActualResultWindow();
+            if (winner == 0 && looser == 0) {
+                showActualResultWindow();
+            } else {
+                // como esse eh o jogador que esta esperado por uma resposta, nesse caso ele soh pode ser o perdedor
+                player.setIsActualChampion(false);
+                var numOfVictories = player.getNumOfVictories() + 1;
+                player.setNumOfOpponentVictories(numOfVictories);
+                showFinalResultWindow();
+            }
         }
     }
 
@@ -75,6 +83,17 @@ public class LoadingBetweenRounds implements Initializable {
         Platform.runLater(() -> {
             try {
                 Model.getInstance().getViewFactory().showActualResultWindow();
+                dashboard.getScene().getWindow().hide();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private void showFinalResultWindow() {
+        Platform.runLater(() -> {
+            try {
+                Model.getInstance().getViewFactory().showResultWindow();
                 dashboard.getScene().getWindow().hide();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
