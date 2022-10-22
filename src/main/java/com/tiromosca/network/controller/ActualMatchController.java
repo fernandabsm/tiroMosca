@@ -2,6 +2,7 @@ package com.tiromosca.network.controller;
 
 import com.tiromosca.network.connection.client.MatchListener;
 import com.tiromosca.network.connection.client.PlayerClient;
+import com.tiromosca.network.controller.util.TextFieldInputLimit;
 import com.tiromosca.network.game.util.PlayerHolder;
 import com.tiromosca.network.model.Model;
 import javafx.application.Platform;
@@ -41,12 +42,17 @@ public class ActualMatchController implements Initializable {
             warning_message.setVisible(false);
             player_aim.setText("Seu número é: " + player.getPlayerAim());
 
+            // limitar caracteres de entrada
+            TextFieldInputLimit.limit_input(value_input, 3);
+
             go_button.setOnAction(event -> {
                 String value = value_input.getText();
                 if (isValidValue(value)) {
                     warning_message.setVisible(false);
+
                     // caso seja um valor valido, enviar ao servidor
                     player.sendAttempt(value + '\n');
+
                     new Thread(player::getMatchResult).start();
                 } else {
                     warning_message.setVisible(true);

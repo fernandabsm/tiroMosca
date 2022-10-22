@@ -71,7 +71,7 @@
 .result_content_button_container Button {
     -fx-background-color: #B6D3B1;
     -fx-pref-width: 191px;
-    -fx-pref-height: 53px;
+    -fx-pref-height: 40px;
     -fx-font-family: "Fredoka";
     -fx-font-size: 20px;
 }

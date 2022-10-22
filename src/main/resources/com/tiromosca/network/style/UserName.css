@@ -1,0 +1,51 @@
+.user_name_container {
+    -fx-background-color: #BDBDBD;
+}
+
+.user_name_content_container {
+    -fx-background-color: #6A9F79;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
+.user_name_content_container Text {
+    -fx-font-family: "Fredoka";
+    -fx-font-size: 40px;
+    -fx-fill: #FFFFFF;
+}
+
+.user_name_content_title_container Text {
+    -fx-font-family: "Fredoka";
+    -fx-font-size: 24px;
+    -fx-fill: #1C3D19;
+}
+
+.user_name_content_textfield_container {
+    -fx-alignment: center;
+}
+
+.input_field {
+    -fx-background-color: #BDBDBD;
+    -fx-pref-width: 300px;
+    -fx-pref-height: 24px;
+    -fx-font-family: "Fredoka";
+    -fx-font-size: 20px;
+    -fx-text-fill: #FFFFFF;
+    -fx-alignment: center;
+}
+
+.user_name_content_button_container {
+    -fx-alignment: center;
+}
+
+.user_name_content_button_container Button {
+    -fx-background-color: #B6D3B1;
+    -fx-pref-width: 191px;
+    -fx-pref-height: 53px;
+    -fx-font-family: "Fredoka";
+    -fx-font-size: 24px;
+}
+
+.user_name_content_button_container Button:hover {
+    -fx-cursor: hand;
+}

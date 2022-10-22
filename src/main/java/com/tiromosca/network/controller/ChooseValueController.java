@@ -1,6 +1,7 @@
 package com.tiromosca.network.controller;
 
 import com.tiromosca.network.connection.client.PlayerClient;
+import com.tiromosca.network.controller.util.TextFieldInputLimit;
 import com.tiromosca.network.game.util.PlayerHolder;
 import com.tiromosca.network.model.Model;
 import javafx.fxml.Initializable;
@@ -23,6 +24,10 @@ public class ChooseValueController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         PlayerHolder holder = PlayerHolder.getInstance();
         PlayerClient player = holder.getPlayer();
+
+        // limitar caracteres de entrada
+        TextFieldInputLimit.limit_input(value_input, 3);
+
         warning_message.setVisible(false);
         start_button.setOnAction(event -> {
             String value = value_input.getText();
@@ -32,6 +37,7 @@ public class ChooseValueController implements Initializable {
                 // caso seja um valor valido, enviar ao servidor
                 player.setPlayerAim(value);
                 player.sendAim(value+'\n');
+
                 try {
                     Model.getInstance().getViewFactory().showLoadingBetweenRoundsWindow();
                     dashboard.getScene().getWindow().hide();

@@ -22,6 +22,8 @@ public class PlayerClient {
     private String shots;
     private String flies;
 
+    private String userName;
+
     private Boolean firstPlayerToPlay;
     private Boolean itsMyTimeToPlay;
     private Boolean isActualChampion;
@@ -39,6 +41,8 @@ public class PlayerClient {
         playerID = playerClientConnection.getPlayerID();
     }
 
+    public void sendUserName(String username) { playerClientConnection.sendUserName(username); }
+
     public void verifyOpponentConnection() {
         playerClientConnection.verifyOpponentConnection();
     }
@@ -50,6 +54,11 @@ public class PlayerClient {
     public String getOpponentAim() {
         return playerClientConnection.getOpponentAim();
     }
+
+    public String getOpponentUserName() {
+        return playerClientConnection.getOpponentUserName();
+    }
+
 
     @Data
     private class PlayerClientConnection {
@@ -120,6 +129,17 @@ public class PlayerClient {
                     }
                 }
            }).start();
+
+        }
+
+        // metodo para enviar o username ao servidor
+        public void sendUserName(String username) {
+            try {
+                bufferedWriter.write(username);
+                bufferedWriter.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         // metodo a ser chamado ao clicar no botao de confirmar escolha de valor
@@ -152,6 +172,16 @@ public class PlayerClient {
                 e.printStackTrace();
             }
             return opponentValue;
+        }
+
+        public String getOpponentUserName() {
+            var opponentUserName = StringUtils.EMPTY;
+            try {
+                opponentUserName = bufferedReader.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return opponentUserName;
         }
     }
 }

@@ -18,7 +18,7 @@ public class GameTypeController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         multiplayer_button.setOnAction(event -> {
             try {
-                Model.getInstance().getViewFactory().showGameLoadingWindow();
+                Model.getInstance().getViewFactory().showUserNameWindow();
                 dashboard.getScene().getWindow().hide();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

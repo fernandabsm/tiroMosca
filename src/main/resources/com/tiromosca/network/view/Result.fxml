@@ -9,7 +9,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane fx:id="dashboard" prefHeight="548.0" prefWidth="385.0" styleClass="result_container" stylesheets="@../style/Result.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tiromosca.network.controller.ResultController">
    <children>
       <VBox layoutX="24.0" layoutY="24.0" prefHeight="463.0" prefWidth="349.0" styleClass="result_content_container" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="53.0">
@@ -30,11 +29,11 @@
                   <Image url="@../image/mosca-icone.png" />
                </image>
             </ImageView>
-            <VBox fillWidth="false" prefHeight="74.0" prefWidth="350.0" styleClass="result_content_title_container">
+            <VBox fillWidth="false" prefHeight="34.0" prefWidth="350.0" styleClass="result_content_title_container">
                <children>
                   <Text fx:id="result_label" strokeType="OUTSIDE" strokeWidth="0.0" text="Você ganhou | perdeu!" wrappingWidth="335.2740135192871">
                      <VBox.margin>
-                        <Insets left="10.0" />
+                        <Insets />
                      </VBox.margin>
                   </Text>
                </children>
@@ -42,12 +41,12 @@
                   <Insets top="10.0" />
                </padding>
             </VBox>
-            <VBox fillWidth="false" prefHeight="42.0" prefWidth="350.0" styleClass="result_content_title_textfield_container">
+            <VBox fillWidth="false" prefHeight="39.0" prefWidth="350.0" styleClass="result_content_title_textfield_container">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="O número era:" />
                </children>
             </VBox>
-            <VBox fillWidth="false" prefHeight="78.0" prefWidth="350.0" styleClass="result_content_result_container">
+            <VBox fillWidth="false" prefHeight="63.0" prefWidth="350.0" styleClass="result_content_result_container">
                <children>
                   <VBox prefHeight="98.0" prefWidth="150.0" styleClass="result_content_result_background_container">
                      <children>
@@ -60,17 +59,27 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox fillWidth="false" prefHeight="102.0" prefWidth="350.0" styleClass="result_content_title_textfield_container">
+            <VBox fillWidth="false" prefHeight="119.0" prefWidth="350.0" styleClass="result_content_title_textfield_container">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Placar:" />
                   <Text fx:id="your_victories_label" layoutX="121.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Você: x vitórias" />
-                  <Text fx:id="opponent_victories_label" layoutX="96.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Oponente: x vitórias" />
+                  <Text fx:id="opponent_victories_label" layoutX="96.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Oponente: x vitórias">
+                     <VBox.margin>
+                        <Insets bottom="-5.0" />
+                     </VBox.margin></Text>
                </children>
             </VBox>
-            <VBox prefHeight="71.0" prefWidth="350.0" styleClass="result_content_button_container">
+            <VBox prefHeight="105.0" prefWidth="350.0" styleClass="result_content_button_container">
                <children>
-                  <Button fx:id="play_again_button" mnemonicParsing="false" text="Jogar novamente" />
+                  <Button fx:id="play_again_button" mnemonicParsing="false" text="Jogar novamente">
+                     <VBox.margin>
+                        <Insets bottom="6.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="over_button" layoutX="89.0" layoutY="19.0" mnemonicParsing="false" text="Encerrar" />
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </VBox>
          </children>
       </VBox>

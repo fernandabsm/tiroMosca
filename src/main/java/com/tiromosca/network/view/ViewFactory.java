@@ -2,6 +2,7 @@ package com.tiromosca.network.view;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import lombok.RequiredArgsConstructor;
@@ -10,12 +11,17 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-@RequiredArgsConstructor
 public class ViewFactory {
 
     public void showGameTypeWindow() throws FileNotFoundException {
         loadFont();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("GameType.fxml"));
+        createStage(loader);
+    }
+
+    public void showUserNameWindow() throws FileNotFoundException {
+        loadFont();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("UserName.fxml"));
         createStage(loader);
     }
 

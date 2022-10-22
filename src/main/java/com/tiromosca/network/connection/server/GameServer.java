@@ -3,6 +3,7 @@ package com.tiromosca.network.connection.server;
 import com.tiromosca.network.game.util.GameMatchManager;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -18,6 +19,8 @@ public class GameServer {
     private int victoriesPlayer1;
     private int victoriesPlayer2;
 
+    private int lastWinner;
+
     private int round;
 
     private String playerOneAttempt;
@@ -26,6 +29,9 @@ public class GameServer {
     private String playerOneAim;
     private String playerTwoAim;
 
+    private String userNamePlayer1;
+    private String userNamePlayer2;
+
     private int fliesPlayer1;
     private int fliesPlayer2;
 
@@ -33,6 +39,10 @@ public class GameServer {
     private GameServerConnection player2;
 
     public GameServer() {
+        userNamePlayer1 = StringUtils.EMPTY;
+        userNamePlayer2 = StringUtils.EMPTY;
+        lastWinner = 0;
+
         victoriesPlayer1 = 0;
         victoriesPlayer2 = 0;
         numOfPlayers = 0;
@@ -97,6 +107,12 @@ public class GameServer {
                 bufferedWriter.write(playerID);
                 bufferedWriter.flush();
 
+                if (playerID == 1) {
+                    userNamePlayer1 = player1.bufferedReader.readLine();
+                } else {
+                    userNamePlayer2 = player2.bufferedReader.readLine();
+                }
+
                 if (playerID == 2) {
                     player1.bufferedWriter.write("Ready!\n");
                     player1.bufferedWriter.flush();
@@ -134,6 +150,9 @@ public class GameServer {
 
                             player1.bufferedWriter.write(playerTwoAim+'\n');
                             player1.bufferedWriter.flush();
+
+                            player1.bufferedWriter.write(userNamePlayer2 + '\n');
+                            player1.bufferedWriter.flush();
                         } else {
                             // winner
                             player1.bufferedWriter.write(0);
@@ -160,6 +179,9 @@ public class GameServer {
                             player2.bufferedWriter.flush();
 
                             player2.bufferedWriter.write(playerOneAim+'\n');
+                            player2.bufferedWriter.flush();
+
+                            player2.bufferedWriter.write(userNamePlayer1 + '\n');
                             player2.bufferedWriter.flush();
                         } else {
                             // winner
@@ -189,7 +211,10 @@ public class GameServer {
                             player2.bufferedWriter.write(0);
                             player2.bufferedWriter.flush();
 
-                            player2.bufferedWriter.write(playerTwoAim+'\n');
+                            player2.bufferedWriter.write(playerOneAim+'\n');
+                            player2.bufferedWriter.flush();
+
+                            player2.bufferedWriter.write(userNamePlayer1 + '\n');
                             player2.bufferedWriter.flush();
                         } else {
                             // winner
@@ -217,6 +242,9 @@ public class GameServer {
                             player1.bufferedWriter.flush();
 
                             player1.bufferedWriter.write(playerTwoAim+'\n');
+                            player1.bufferedWriter.flush();
+
+                            player1.bufferedWriter.write(userNamePlayer2 + '\n');
                             player1.bufferedWriter.flush();
                         } else {
                             // winner

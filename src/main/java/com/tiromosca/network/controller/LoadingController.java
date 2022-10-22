@@ -33,13 +33,10 @@ public class LoadingController implements Initializable {
 
         @Override
         public void run() {
-            PlayerClient playerClient = new PlayerClient();
-            playerClient.setConnectionListener(this);
-            playerClient.connectToServer();
-
             PlayerHolder holder = PlayerHolder.getInstance();
-            holder.setPlayer(playerClient);
+            PlayerClient playerClient = holder.getPlayer();
 
+            playerClient.setConnectionListener(this);
             if (playerClient.getPlayerID() == 1) {
                 synchronized (haveTwoPlayers) {
                     new Thread(playerClient::verifyOpponentConnection).start();
@@ -51,7 +48,7 @@ public class LoadingController implements Initializable {
                 }
             } else {
                 try {
-                    sleep(3000);
+                    sleep(2000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
