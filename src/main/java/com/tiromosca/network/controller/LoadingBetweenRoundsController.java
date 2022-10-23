@@ -13,7 +13,7 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoadingBetweenRounds implements Initializable {
+public class LoadingBetweenRoundsController implements Initializable {
     public AnchorPane dashboard;
 
     @Override
@@ -30,6 +30,7 @@ public class LoadingBetweenRounds implements Initializable {
             PlayerClient player = holder.getPlayer();
 
             if (player.getItsMyTimeToPlay()) {
+                System.out.println("Oi, eu sou o player " + player.getPlayerID() + "e estou esperando uma confirmaçao de que o outro player conectou para enviar meu numero");
                 player.setConnectionListener(this);
                 new Thread(player::verifyOpponentConnection).start();
             } else {
@@ -40,6 +41,7 @@ public class LoadingBetweenRounds implements Initializable {
 
         @Override
         public void itsTimeToPlay() {
+            System.out.println("Entrei na funcao itsTimeToPlay");
             PlayerHolder holder = PlayerHolder.getInstance();
             PlayerClient player = holder.getPlayer();
             player.setMatchListener(this);
@@ -49,6 +51,7 @@ public class LoadingBetweenRounds implements Initializable {
 
         @Override
         public void haveAResult(String flies, String shots, int winner, int looser) {
+            System.out.println("Entrei na funcao haveAResult");
             PlayerHolder holder = PlayerHolder.getInstance();
             PlayerClient player = holder.getPlayer();
 

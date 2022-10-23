@@ -37,7 +37,7 @@ public class LoadingController implements Initializable {
             PlayerClient playerClient = holder.getPlayer();
 
             playerClient.setConnectionListener(this);
-            if (playerClient.getPlayerID() == 1) {
+            if (playerClient.getItsMyTimeToPlay()) {
                 synchronized (haveTwoPlayers) {
                     new Thread(playerClient::verifyOpponentConnection).start();
                     try {

@@ -39,11 +39,7 @@ public class ResultController implements Initializable {
             result_label.setText("Você perdeu!");
         }
 
-        if (player.getIsActualChampion()) {
-            player.setItsMyTimeToPlay(true);
-        } else {
-            player.setItsMyTimeToPlay(false);
-        }
+        player.setItsMyTimeToPlay(player.getIsActualChampion());
 
         play_again_button.setOnAction(event -> {
             try {

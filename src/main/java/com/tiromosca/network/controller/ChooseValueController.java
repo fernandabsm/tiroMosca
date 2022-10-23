@@ -35,6 +35,7 @@ public class ChooseValueController implements Initializable {
                 warning_message.setVisible(false);
 
                 // caso seja um valor valido, enviar ao servidor
+                System.out.println("ESCOLHI UM NOVO VALOR. ESSE VALOR EH: " + value);
                 player.setPlayerAim(value);
                 player.sendAim(value+'\n');
 

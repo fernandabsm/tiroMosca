@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.Objects;
 
 @Data
 public class PlayerClient {
@@ -97,6 +98,7 @@ public class PlayerClient {
                     try {
                         msgFromOpponent = bufferedReader.readLine();
                         System.out.println(msgFromOpponent);
+                        System.out.println("IMPRIMI A MSG QUE RECEBI DO OPONENTE ENQUANTO ESTAVA verifyOpponentConnection");
                         connectionListener.itsTimeToPlay();
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -145,9 +147,13 @@ public class PlayerClient {
         // metodo a ser chamado ao clicar no botao de confirmar escolha de valor
         public void sendAim(String aim) {
             try {
+                System.out.println("Printando escolha atual!!!");
+                System.out.println(aim);
                 playerAim = aim;
                 bufferedWriter.write(aim);
                 bufferedWriter.flush();
+                System.out.println("ENVIEI!!!");
+                System.out.println(aim);
             } catch (IOException e) {
                 e.printStackTrace();
             }
