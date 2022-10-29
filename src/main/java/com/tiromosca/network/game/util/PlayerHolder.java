@@ -7,7 +7,8 @@ public class PlayerHolder {
 
     private final static PlayerHolder INSTANCE = new PlayerHolder();
 
-    private PlayerHolder() {}
+    private PlayerHolder() {
+    }
 
     public static PlayerHolder getInstance() {
         return INSTANCE;

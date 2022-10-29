@@ -43,11 +43,15 @@ public class ResultController implements Initializable {
 
         play_again_button.setOnAction(event -> {
             try {
-                Model.getInstance().getViewFactory().showChooseValueWindow();
+                Model.getInstance().getMultiplayerViewFactory().showChooseValueWindow();
                 dashboard.getScene().getWindow().hide();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
+        });
+
+        over_button.setOnAction(event -> {
+            dashboard.getScene().getWindow().hide();
         });
     }
 }

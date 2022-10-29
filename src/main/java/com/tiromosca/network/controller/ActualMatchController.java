@@ -11,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
 import java.net.URL;
@@ -96,7 +95,7 @@ public class ActualMatchController implements Initializable {
     private void showActualResultWidow() {
         Platform.runLater(() -> {
             try {
-                Model.getInstance().getViewFactory().showActualResultWindow();
+                Model.getInstance().getMultiplayerViewFactory().showActualResultWindow();
                 dashboard.getScene().getWindow().hide();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -107,7 +106,7 @@ public class ActualMatchController implements Initializable {
     private void showFinalResultWidow() {
         Platform.runLater(() -> {
             try {
-                Model.getInstance().getViewFactory().showResultWindow();
+                Model.getInstance().getMultiplayerViewFactory().showResultWindow();
                 dashboard.getScene().getWindow().hide();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

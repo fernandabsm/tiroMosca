@@ -1,8 +1,8 @@
-package com.tiromosca.network.controller;
+package com.tiromosca.network.singleplayer.controller;
 
-import com.tiromosca.network.connection.client.PlayerClient;
-import com.tiromosca.network.game.util.PlayerHolder;
 import com.tiromosca.network.model.Model;
+import com.tiromosca.network.singleplayer.SmartGame;
+import com.tiromosca.network.singleplayer.util.SmartGameHolder;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -23,27 +23,27 @@ public class ActualResultController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        PlayerHolder holder = PlayerHolder.getInstance();
-        PlayerClient player = holder.getPlayer();
+        SmartGameHolder holder = SmartGameHolder.getInstance();
+        SmartGame smartGame = holder.getSmartGame();
         String infoText;
 
-        if (player.getItsMyTimeToPlay()) {
-            player.setItsMyTimeToPlay(false);
-            infoText = "Seu palpite foi: " + player.getLastAttempt();
+        if (smartGame.isPlayerTime()) {
+            smartGame.setPlayerTime(false);
+            infoText = "Seu palpite foi: " + smartGame.getPlayerLastAttempt();
             go_button.setOnAction(event -> {
                 try {
-                    Model.getInstance().getMultiplayerViewFactory().showLoadingBetweenRoundsWindow();
+                    Model.getInstance().getSingleplayerViewFactory().showLoadingWindow();
                     dashboard.getScene().getWindow().hide();
                 } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                    throw new RuntimeException(e);
                 }
             });
         } else {
-            player.setItsMyTimeToPlay(true);
-            infoText = "O palpite do oponente foi: " + player.getOpponentAttempt();
+            smartGame.setPlayerTime(true);
+            infoText = "O palpite do oponente foi: " + smartGame.getMyLastAttempt();
             go_button.setOnAction(event -> {
                 try {
-                    Model.getInstance().getMultiplayerViewFactory().showActualMatchWindow();
+                    Model.getInstance().getSingleplayerViewFactory().showActualMatchWindow();
                     dashboard.getScene().getWindow().hide();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
@@ -52,8 +52,8 @@ public class ActualResultController implements Initializable {
         }
 
         info_label.setText(infoText);
-        shots_label.setText(player.getShots());
-        flies_label.setText(player.getFlies());
-        player_aim.setText("Seu número é: " + player.getPlayerAim());
+        shots_label.setText(smartGame.getActualShotsResult());
+        flies_label.setText(smartGame.getActualFliesResult());
+        player_aim.setText("Seu número é: " + smartGame.getValueOfPlayer());
     }
 }

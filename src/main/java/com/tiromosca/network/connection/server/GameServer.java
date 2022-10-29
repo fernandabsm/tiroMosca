@@ -130,39 +130,25 @@ public class GameServer {
 
                 while (true) {
                     flag = true;
-                    System.out.println("Vamos jogar mais uma partida!");
                     if (lastWinner == 0 || lastWinner == 1) {
-                        System.out.println("Ou o player 1 ganhou, ou eh a primeira partida!");
                         playerOneTime = true;
                         playerTwoTime = false;
                     } else {
-                        System.out.println("O player 2 ganhou a ultima partida!");
                         playerOneTime = false;
                         playerTwoTime = true;
                     }
 
                     if (playerID == 1) {
-                        System.out.println("Eu to aqui! (1)");
                         playerOneAim = player1.bufferedReader.readLine();
-                        System.out.println("Printando o numero do player 1: " + playerOneAim);
-                        System.out.println("UE " + playerOneAim);
                     } else {
-                        System.out.println("Eu to aqui! (1.1)");
                         playerTwoAim = player2.bufferedReader.readLine();
-                        System.out.println("Printando o numero do player 2: " + playerTwoAim);
                         player1.bufferedWriter.write("Ready!\n");
                         player1.bufferedWriter.flush();
-                        System.out.println("Avisei ao player 1 que o player 2 enviou o numero dele");
                     }
 
                     while (flag) {
-                        System.out.println("Printando a flag! " + flag);
-                        System.out.println("Eu to aqui! (2)");
                         if (playerOneTime && playerID == 1) {
-                            System.out.println("Eu to aqui! (3)");
                             playerOneAttempt = player1.bufferedReader.readLine();
-                            System.out.println("Printando a tentativa do player 1: " + playerOneAttempt);
-                            System.out.println("Eu to aqui! (4)");
                             List<Integer> shotsAndFies = GameMatchManager.getResultOfAMatch(playerOneAttempt, playerTwoAim);
                             fliesPlayer1 = shotsAndFies.get(1);
                             List<String> result = GameMatchManager.formatResultOfAMatch(shotsAndFies.get(0), fliesPlayer1);
@@ -206,7 +192,6 @@ public class GameServer {
                                 playerOneTime = false;
                             }
 
-                            System.out.println("Enviando as respostas para o player 2");
                             //Envia o resultado ao player 2
                             player2.bufferedWriter.write(playerOneAttempt + '\n');
                             player2.bufferedWriter.flush();
@@ -289,7 +274,6 @@ public class GameServer {
                                 playerOneTime = true;
                             }
 
-                            System.out.println("Enviando as respostas para o player 1");
                             //Envia o resultado ao player 1
                             player1.bufferedWriter.write(playerTwoAttempt + '\n');
                             player1.bufferedWriter.flush();

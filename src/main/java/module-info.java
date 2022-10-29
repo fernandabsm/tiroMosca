@@ -9,4 +9,5 @@ module com.tiromosca.network {
     opens com.tiromosca.network to javafx.fxml;
     exports com.tiromosca.network;
     exports com.tiromosca.network.controller;
+    exports com.tiromosca.network.singleplayer.controller;
 }

@@ -30,7 +30,6 @@ public class LoadingBetweenRoundsController implements Initializable {
             PlayerClient player = holder.getPlayer();
 
             if (player.getItsMyTimeToPlay()) {
-                System.out.println("Oi, eu sou o player " + player.getPlayerID() + "e estou esperando uma confirmaçao de que o outro player conectou para enviar meu numero");
                 player.setConnectionListener(this);
                 new Thread(player::verifyOpponentConnection).start();
             } else {
@@ -74,7 +73,7 @@ public class LoadingBetweenRoundsController implements Initializable {
     private void showActualMatchWidow() {
         Platform.runLater(() -> {
             try {
-                Model.getInstance().getViewFactory().showActualMatchWindow();
+                Model.getInstance().getMultiplayerViewFactory().showActualMatchWindow();
                 dashboard.getScene().getWindow().hide();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -85,7 +84,7 @@ public class LoadingBetweenRoundsController implements Initializable {
     private void showActualResultWindow() {
         Platform.runLater(() -> {
             try {
-                Model.getInstance().getViewFactory().showActualResultWindow();
+                Model.getInstance().getMultiplayerViewFactory().showActualResultWindow();
                 dashboard.getScene().getWindow().hide();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -96,7 +95,7 @@ public class LoadingBetweenRoundsController implements Initializable {
     private void showFinalResultWindow() {
         Platform.runLater(() -> {
             try {
-                Model.getInstance().getViewFactory().showResultWindow();
+                Model.getInstance().getMultiplayerViewFactory().showResultWindow();
                 dashboard.getScene().getWindow().hide();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

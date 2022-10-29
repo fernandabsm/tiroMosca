@@ -1,9 +1,8 @@
-package com.tiromosca.network.controller;
+package com.tiromosca.network.singleplayer.controller;
 
-import com.tiromosca.network.connection.client.PlayerClient;
-import com.tiromosca.network.controller.util.TextFieldInputLimit;
-import com.tiromosca.network.game.util.PlayerHolder;
 import com.tiromosca.network.model.Model;
+import com.tiromosca.network.singleplayer.SmartGame;
+import com.tiromosca.network.singleplayer.util.SmartGameHolder;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -22,33 +21,27 @@ public class ChooseValueController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        PlayerHolder holder = PlayerHolder.getInstance();
-        PlayerClient player = holder.getPlayer();
-
-        // limitar caracteres de entrada
-        TextFieldInputLimit.limit_input(value_input, 3);
-
         warning_message.setVisible(false);
+
+        SmartGameHolder holder = SmartGameHolder.getInstance();
+        var smartGame = holder.getSmartGame();
+
         start_button.setOnAction(event -> {
             String value = value_input.getText();
             if (isValidValue(value)) {
                 warning_message.setVisible(false);
-
-                // caso seja um valor valido, enviar ao servidor
-                player.setPlayerAim(value);
-                player.sendAim(value + '\n');
-
+                smartGame.setValueOfPlayer(value);
                 try {
-                    Model.getInstance().getMultiplayerViewFactory().showLoadingBetweenRoundsWindow();
+                    Model.getInstance().getSingleplayerViewFactory().showActualMatchWindow();
                     dashboard.getScene().getWindow().hide();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
-                ;
             } else {
                 warning_message.setVisible(true);
             }
         });
+
     }
 
     private boolean isValidValue(String value) {

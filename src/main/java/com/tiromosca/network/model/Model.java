@@ -1,6 +1,7 @@
 package com.tiromosca.network.model;
 
-import com.tiromosca.network.view.ViewFactory;
+import com.tiromosca.network.view.MultiplayerViewFactory;
+import com.tiromosca.network.view.SingleplayerViewFactory;
 import lombok.Getter;
 
 import java.util.Objects;
@@ -8,10 +9,12 @@ import java.util.Objects;
 @Getter
 public class Model {
     private static Model model;
-    private final ViewFactory viewFactory;
+    private final MultiplayerViewFactory multiplayerViewFactory;
+    private final SingleplayerViewFactory singleplayerViewFactory;
 
     private Model() {
-        this.viewFactory = new ViewFactory();
+        this.multiplayerViewFactory = new MultiplayerViewFactory();
+        this.singleplayerViewFactory = new SingleplayerViewFactory();
     }
 
     public static synchronized Model getInstance() {

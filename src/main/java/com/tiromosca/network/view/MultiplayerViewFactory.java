@@ -2,16 +2,15 @@ package com.tiromosca.network.view;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import lombok.RequiredArgsConstructor;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class ViewFactory {
+public class MultiplayerViewFactory {
 
     public void showGameTypeWindow() throws FileNotFoundException {
         loadFont();
@@ -75,6 +74,8 @@ public class ViewFactory {
             e.printStackTrace();
         }
         Stage stage = new Stage();
+        stage.getIcons().add(new Image(String.valueOf(getClass().getResource("/com/tiromosca/network/image/mosca-icone.png"))));
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.setTitle("Tiro e Mosca");
         stage.show();

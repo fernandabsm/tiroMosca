@@ -11,7 +11,7 @@ public class GameMatchManager {
         if (attempt.equals(aim)) {
             return List.of(0, 3);
         }
-        
+
         List<Character> individualCharactersAim = new ArrayList<>();
         individualCharactersAim.add(aim.charAt(0));
         individualCharactersAim.add(aim.charAt(1));
@@ -25,15 +25,15 @@ public class GameMatchManager {
         int shot = 0, fly = 0;
 
         // Verificar quantos / se há tiros na mosca
-        for(int i = 0; i < 3; i ++) {
-          if (individualCharactersAttempt.get(i).equals(individualCharactersAim.get(i))) {
-              fly++;
-          }
+        for (int i = 0; i < 3; i++) {
+            if (individualCharactersAttempt.get(i).equals(individualCharactersAim.get(i))) {
+                fly++;
+            }
         }
 
         // Verifica quantos / se há tiros acertados
-        for(int i = 0; i < 3; i ++) {
-            for(int j = 0; j < 3; j++) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
                 if (individualCharactersAttempt.get(j).equals(individualCharactersAim.get(i)) && i != j) {
                     shot++;
                 }

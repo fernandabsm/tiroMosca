@@ -7,6 +7,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -84,6 +85,8 @@ public class LoadingController implements Initializable {
                 e.printStackTrace();
             }
             Stage stage = new Stage();
+            stage.getIcons().add(new Image(String.valueOf(getClass().getResource("/com/tiromosca/network/image/mosca-icone.png"))));
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.setTitle("Tiro e Mosca");
             stage.show();

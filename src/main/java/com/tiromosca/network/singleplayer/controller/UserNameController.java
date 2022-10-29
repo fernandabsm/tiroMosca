@@ -1,9 +1,9 @@
-package com.tiromosca.network.controller;
+package com.tiromosca.network.singleplayer.controller;
 
-import com.tiromosca.network.connection.client.PlayerClient;
 import com.tiromosca.network.controller.util.TextFieldInputLimit;
-import com.tiromosca.network.game.util.PlayerHolder;
 import com.tiromosca.network.model.Model;
+import com.tiromosca.network.singleplayer.SmartGame;
+import com.tiromosca.network.singleplayer.util.SmartGameHolder;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -21,22 +21,22 @@ public class UserNameController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        PlayerClient playerClient = new PlayerClient();
-        playerClient.connectToServer();
+        SmartGame smartGame = new SmartGame();
+        smartGame.chooseValue();
+        smartGame.setNumOfVictoriesOfPlayer(0);
+        smartGame.setNumOfVictoriesOfPC(0);
+        smartGame.setPlayerTime(true);
 
-        PlayerHolder holder = PlayerHolder.getInstance();
-        holder.setPlayer(playerClient);
+        SmartGameHolder holder = SmartGameHolder.getInstance();
+        holder.setSmartGame(smartGame);
 
-
-        // limitar caracteres de entrada
         TextFieldInputLimit.limit_input(user_name_input, 15);
 
         play_button.setOnAction(event -> {
             try {
-                playerClient.setUserName(user_name_input.getText());
-                playerClient.sendUserName(user_name_input.getText() + '\n');
+                smartGame.setPlayerUserName(user_name_input.getText());
 
-                Model.getInstance().getMultiplayerViewFactory().showGameLoadingWindow();
+                Model.getInstance().getSingleplayerViewFactory().showChooseValueWindow();
                 dashboard.getScene().getWindow().hide();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

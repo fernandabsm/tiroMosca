@@ -5,7 +5,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.Objects;
 
 @Data
 public class PlayerClient {
@@ -35,14 +34,19 @@ public class PlayerClient {
     public void sendAim(String aim) {
         playerClientConnection.sendAim(aim);
     }
-    public void sendAttempt(String sendAttempt) { playerClientConnection.sendAttempt(sendAttempt); }
+
+    public void sendAttempt(String sendAttempt) {
+        playerClientConnection.sendAttempt(sendAttempt);
+    }
 
     public void connectToServer() {
         playerClientConnection = new PlayerClientConnection();
         playerID = playerClientConnection.getPlayerID();
     }
 
-    public void sendUserName(String username) { playerClientConnection.sendUserName(username); }
+    public void sendUserName(String username) {
+        playerClientConnection.sendUserName(username);
+    }
 
     public void verifyOpponentConnection() {
         playerClientConnection.verifyOpponentConnection();
@@ -130,7 +134,7 @@ public class PlayerClient {
                         e.printStackTrace();
                     }
                 }
-           }).start();
+            }).start();
 
         }
 
