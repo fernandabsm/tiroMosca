@@ -63,7 +63,7 @@ public class LoadingBetweenRoundsController implements Initializable {
             } else {
                 // como esse eh o jogador que esta esperado por uma resposta, nesse caso ele soh pode ser o perdedor
                 player.setIsActualChampion(false);
-                var numOfVictories = player.getNumOfVictories() + 1;
+                var numOfVictories = player.getNumOfOpponentVictories() + 1;
                 player.setNumOfOpponentVictories(numOfVictories);
                 showFinalResultWindow();
             }

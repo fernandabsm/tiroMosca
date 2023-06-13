@@ -50,8 +50,7 @@ public class SingleplayerViewFactory {
 
 
     private void loadFont() throws FileNotFoundException {
-        File file = new File("src/main/resources/com/tiromosca/network/style/font/Fredoka-Regular.ttf");
-        Font.loadFont(new FileInputStream(file), 40);
+        Font.loadFont(getClass().getResourceAsStream("/com/tiromosca/network/style/font/Fredoka-Regular.ttf"), 40);
     }
 
     private void createStage(FXMLLoader loader) {

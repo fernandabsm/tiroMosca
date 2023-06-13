@@ -76,7 +76,6 @@ public class ActualMatchController implements Initializable {
                 player.setIsActualChampion(true);
                 var numOfVictories = player.getNumOfVictories() + 1;
                 player.setNumOfVictories(numOfVictories);
-                System.out.println(" OI cheguei aqui");
                 showFinalResultWidow();
             }
         }

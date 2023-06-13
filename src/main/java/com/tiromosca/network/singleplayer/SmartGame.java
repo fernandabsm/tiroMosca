@@ -140,8 +140,8 @@ public class SmartGame {
         var secondDigit = valueOf(number.get(1));
         var thirdDigit = valueOf(number.get(2));
 
-
         myValue = firstDigit + secondDigit + thirdDigit;
+        System.out.println(myValue);
     }
 
     private List<Integer> getThreeDifferentDigits() {

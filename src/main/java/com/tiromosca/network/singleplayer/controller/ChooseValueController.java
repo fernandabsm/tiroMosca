@@ -1,7 +1,6 @@
 package com.tiromosca.network.singleplayer.controller;
 
 import com.tiromosca.network.model.Model;
-import com.tiromosca.network.singleplayer.SmartGame;
 import com.tiromosca.network.singleplayer.util.SmartGameHolder;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;

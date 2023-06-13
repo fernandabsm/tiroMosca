@@ -12,8 +12,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,8 +28,6 @@ public class LoadingController implements Initializable {
 
     private class LoadingControllerThread extends Thread implements ConnectionListener {
 
-        private final Boolean haveTwoPlayers = false;
-
         @Override
         public void run() {
             PlayerHolder holder = PlayerHolder.getInstance();
@@ -39,33 +35,27 @@ public class LoadingController implements Initializable {
 
             playerClient.setConnectionListener(this);
             if (playerClient.getItsMyTimeToPlay()) {
-                synchronized (haveTwoPlayers) {
-                    new Thread(playerClient::verifyOpponentConnection).start();
-                    try {
-                        haveTwoPlayers.wait();
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
+                new Thread(playerClient::verifyOpponentConnection).start();
             } else {
                 try {
                     sleep(2000);
+                    try {
+                        showChooseValueWindow();
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-            }
-
-            try {
-                showChooseValueWindow();
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
             }
         }
 
         @Override
         public void itsTimeToPlay() {
-            synchronized (this.haveTwoPlayers) {
-                this.haveTwoPlayers.notifyAll();
+            try {
+                showChooseValueWindow();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
             }
         }
     }
@@ -95,8 +85,7 @@ public class LoadingController implements Initializable {
     }
 
     private void loadFont() throws FileNotFoundException {
-        File file = new File("src/main/resources/com/tiromosca/network/style/font/Fredoka-Regular.ttf");
-        Font.loadFont(new FileInputStream(file), 40);
+        Font.loadFont(getClass().getResourceAsStream("/com/tiromosca/network/style/font/Fredoka-Regular.ttf"), 40);
     }
 
 }

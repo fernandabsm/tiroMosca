@@ -77,7 +77,7 @@ public class PlayerClient {
             try {
                 numOfVictories = 0;
                 numOfOpponentVictories = 0;
-                this.socket = new Socket("localhost", 20525);
+                this.socket = new Socket("127.0.0.1", 20525);
                 var outputStream = new OutputStreamWriter(socket.getOutputStream());
                 var inputStream = new InputStreamReader(socket.getInputStream());
                 this.bufferedWriter = new BufferedWriter(outputStream);

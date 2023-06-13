@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.List;
@@ -58,7 +59,8 @@ public class GameServer {
 
         // instanciando o sv socket na porta 20525
         try {
-            serverSocket = new ServerSocket(20525);
+            InetAddress address = InetAddress.getByName("127.0.0.1");
+            serverSocket = new ServerSocket(20525, 50, address);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -130,20 +132,33 @@ public class GameServer {
 
                 while (true) {
                     flag = true;
+                    System.out.println("Last winner" + lastWinner);
                     if (lastWinner == 0 || lastWinner == 1) {
                         playerOneTime = true;
                         playerTwoTime = false;
+                        if (playerID == 1) {
+                            playerOneAim = player1.bufferedReader.readLine();
+                        } else {
+                            playerTwoAim = player2.bufferedReader.readLine();
+                            player1.bufferedWriter.write("Ready!\n");
+                            player1.bufferedWriter.flush();
+                        }
                     } else {
+                        System.out.println("Cheguei");
                         playerOneTime = false;
                         playerTwoTime = true;
-                    }
+                        if (playerID == 2) {
+                            System.out.println("Cheguei aqui");
+                            playerTwoAim = player2.bufferedReader.readLine();
+                        } else {
+                            System.out.println("Aqui tambem");
+                            playerOneAim = player1.bufferedReader.readLine();
+                            System.out.println("Vou avisar ao player 2 que o player 1 escolheu tambem");
+                            player2.bufferedWriter.write("Ready!\n");
+                            System.out.println("Avisei");
+                            player2.bufferedWriter.flush();
+                        }
 
-                    if (playerID == 1) {
-                        playerOneAim = player1.bufferedReader.readLine();
-                    } else {
-                        playerTwoAim = player2.bufferedReader.readLine();
-                        player1.bufferedWriter.write("Ready!\n");
-                        player1.bufferedWriter.flush();
                     }
 
                     while (flag) {
