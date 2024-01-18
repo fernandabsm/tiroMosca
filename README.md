@@ -1,7 +1,7 @@
 # Tiro e Mosca
 
 ### Tiro e Mosca foi um jogo desenvolvido como parte avaliativa da disciplina Redes de Computadores do curso de Engenharia de Computação da UFOP. 
-### A ideia é unir estratégia e sorte para adivinhar o número que o oponente escolheu. Cada jogador escolhe um número de 3 dígitos distintos e o objetivo é adivinhar primeiro o número escolhido pelo adversário.
+### A ideia é unir estratégia e sorte para adivinhar o número escolhido pelo oponente. Cada jogador escolhe um número de 3 dígitos distintos e o objetivo é adivinhar primeiro o número escolhido pelo adversário.
 ### O resultado de cada rodada é a indicação se o jogador teve algum acerto. Caso tenha acertado um dígito, mas na posição errada, é indicado 1 tiro. Caso tenha acertado um dígito na posição certa, é indicada 1 mosca. Por exemplo, o número escolhido pelo jogador A foi 123 e o jogador B teve como palpite o número 253. Será indicado que ele obteve 1 tiro e 1 mosca. Essas dicas são dadas a cada rodada, até que alguém adivinhe o número do oponente.
 
 ### O jogo conta com um modo multiplayer, que permite jogar online contra um outro jogador e um modo local, em que o usuário joga contra o computador.
