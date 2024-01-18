@@ -66,7 +66,7 @@ public class PlayHistoryController implements Initializable {
                             BorderPane.setMargin(label, new Insets(0, 0, 0, 10));
 
                             setGraphic(borderPane);
-                            setDisable(true);
+                            listView.setMouseTransparent(true);
                         }
                     }
                 };
