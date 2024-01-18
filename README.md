@@ -11,7 +11,7 @@
 
 # Como executar
 
-### ⚠ É recomendo que se utilize a IDE Intellij Ultimate para executar o programa, pois ele te dará suporte aos arquivos CSS e ao JavaFX. Você pode conseguir uma licença gratuita usando o email estudantil. [Veja aqui!](https://www.jetbrains.com/community/education/#students)
+### ⚠ É recomendo que se utilize a IDE Intellij Ultimate para executar o programa, pois ela te dará suporte aos arquivos CSS e ao JavaFX. Você pode conseguir uma licença gratuita usando o email estudantil. [Veja aqui!](https://www.jetbrains.com/community/education/#students)
 
 ### 1. Execute o arquivo GameServer
 <br>&nbsp;&nbsp;&nbsp;📁 com.tiromosca.network.connection.server</br>
