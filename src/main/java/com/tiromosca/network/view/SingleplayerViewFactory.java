@@ -24,6 +24,12 @@ public class SingleplayerViewFactory {
         createStage(loader);
     }
 
+    public void showPlayHistoryWindow() throws FileNotFoundException {
+        loadFont();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("PlayHistorySinglePlayer.fxml"));
+        createStage(loader);
+    }
+
     public void showActualMatchWindow() throws FileNotFoundException {
         loadFont();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ActualMatchSingleplayer.fxml"));

@@ -21,6 +21,7 @@ public class ActualMatchController implements Initializable {
     public Button go_button;
     public Text player_aim;
     public Text warning_message;
+    public Button play_history_button;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -66,6 +67,15 @@ public class ActualMatchController implements Initializable {
                 }
             } else  {
                 warning_message.setVisible(true);
+            }
+        });
+
+        play_history_button.setOnAction(event -> {
+            try {
+                Model.getInstance().getSingleplayerViewFactory().showPlayHistoryWindow();
+                dashboard.getScene().getWindow().hide();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
         });
     }

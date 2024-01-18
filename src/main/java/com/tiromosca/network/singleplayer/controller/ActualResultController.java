@@ -38,6 +38,13 @@ public class ActualResultController implements Initializable {
                     throw new RuntimeException(e);
                 }
             });
+
+            // Add a jogada ao historico
+            var lastAttempt = smartGame.getPlayerLastAttempt();
+            var playHistoryText = lastAttempt + " - "
+                    + smartGame.getActualShotsResult() + ", "
+                    + smartGame.getActualFliesResult();
+            smartGame.getPlays().add(playHistoryText);
         } else {
             smartGame.setPlayerTime(true);
             infoText = "O palpite do oponente foi: " + smartGame.getMyLastAttempt();

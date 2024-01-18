@@ -40,7 +40,6 @@ public class LoadingBetweenRoundsController implements Initializable {
 
         @Override
         public void itsTimeToPlay() {
-            System.out.println("Entrei na funcao itsTimeToPlay");
             PlayerHolder holder = PlayerHolder.getInstance();
             PlayerClient player = holder.getPlayer();
             player.setMatchListener(this);

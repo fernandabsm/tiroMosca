@@ -36,6 +36,12 @@ public class MultiplayerViewFactory {
         createStage(loader);
     }
 
+    public void showPlayHistoryWindow() throws FileNotFoundException {
+        loadFont();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("PlayHistory.fxml"));
+        createStage(loader);
+    }
+
     public void showActualMatchWindow() throws FileNotFoundException {
         loadFont();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ActualMatch.fxml"));

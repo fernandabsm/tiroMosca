@@ -38,6 +38,13 @@ public class ActualResultController implements Initializable {
                     e.printStackTrace();
                 }
             });
+
+            // Add a jogada ao historico
+            var lastAttempt = player.getLastAttempt();
+            var playHistoryText = lastAttempt.substring(0, lastAttempt.length() - 1) + " - "
+                    + player.getShots() + ", "
+                    + player.getFlies();
+            player.getPlays().add(playHistoryText);
         } else {
             player.setItsMyTimeToPlay(true);
             infoText = "O palpite do oponente foi: " + player.getOpponentAttempt();

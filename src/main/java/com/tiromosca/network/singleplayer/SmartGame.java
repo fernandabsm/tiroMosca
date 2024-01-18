@@ -4,12 +4,19 @@ import com.tiromosca.network.game.util.GameMatchManager;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 import static java.lang.String.valueOf;
 
 @Getter
 @Setter
 public class SmartGame {
+
+    private List<String> plays;
+
+    public SmartGame() {
+        plays = new ArrayList<>();
+    }
 
     private int firstDigit = 0;
     private int secondDigit = 1;

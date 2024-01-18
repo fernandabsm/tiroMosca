@@ -5,6 +5,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class PlayerClient {
@@ -27,6 +29,8 @@ public class PlayerClient {
     private Boolean firstPlayerToPlay;
     private Boolean itsMyTimeToPlay;
     private Boolean isActualChampion;
+
+    private List<String> plays;
 
     private ConnectionListener connectionListener;
     private MatchListener matchListener;
@@ -75,6 +79,7 @@ public class PlayerClient {
 
         public PlayerClientConnection() {
             try {
+                plays = new ArrayList<>();
                 numOfVictories = 0;
                 numOfOpponentVictories = 0;
                 this.socket = new Socket("127.0.0.1", 20525);
@@ -83,7 +88,6 @@ public class PlayerClient {
                 this.bufferedWriter = new BufferedWriter(outputStream);
                 this.bufferedReader = new BufferedReader(inputStream);
                 this.playerID = bufferedReader.read();
-                System.out.println("Player " + playerID + " conectado");
                 this.opponentID = (playerID == 1) ? 2 : 1;
                 firstPlayerToPlay = playerID == 1;
                 itsMyTimeToPlay = playerID == 1;
