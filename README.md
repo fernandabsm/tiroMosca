@@ -17,7 +17,7 @@
 <br>&nbsp;&nbsp;&nbsp;📁 com.tiromosca.network.connection.server</br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📄 GameServer
 
-### Isso inicializará o servidor. Na linha 62, é estabelecido o ip do host como o IP local ("127.0.0.1"). Para executar online entre 2 computadores diferentes, é necessário estabeler um IP host válido, disponível para conexão.
+### Isso inicializará o servidor. Na linha 62, é estabelecido o ip do host como o IP local ("127.0.0.1"). Para jogar online entre 2 computadores diferentes, é necessário estabeler um IP host válido, disponível para conexão.
 
 ### 2. Abra e altere o arquivo PlayerClient
 <br>&nbsp;&nbsp;&nbsp;📁 com.tiromosca.network.connection.client</br>
